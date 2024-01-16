@@ -4,9 +4,14 @@ export class Details{
     constructor(id) {
     this.Ui = new Ui();
     document.getElementById("btnClose").addEventListener("click", ()=>{
-    document.querySelector(".games").classList.remove("d-none");
-    document.querySelector(".details").classList.add("d-none");
+        closeBtn()
     });
+    document.addEventListener("keydown", (e)=> {
+        if (e.key == "Escape") {
+            closeBtn()
+        }
+      });
+      
     this.apiDetails(id);
 }
 async apiDetails(idGames){
@@ -24,4 +29,9 @@ async apiDetails(idGames){
     this.Ui.displayDetails(result);
     loading.classList.add("d-none");
 }
+
+}
+function closeBtn() {
+    document.querySelector(".games").classList.remove("d-none");
+    document.querySelector(".details").classList.add("d-none");
 }
